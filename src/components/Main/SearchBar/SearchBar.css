@@ -1,0 +1,39 @@
+.input{
+    max-width: 880px;
+    margin: 20px auto;
+    display: flex;
+
+}
+
+.input__hide{
+    display: none;
+}
+
+.input__search {
+    flex: 1;
+    margin-right: 6px;
+}
+
+
+
+.input__container{
+    width: 80%;
+    border: 1px solid #000;
+    border-radius: 4px;
+    height: 30px;
+    padding: 0 20px;
+    margin: 0 10px 0 0;
+    outline: none;
+}
+
+@media screen and (max-width: 520px){
+    .input__container{
+        height: 26px;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .input__container{
+        height: 22px;
+    }
+}

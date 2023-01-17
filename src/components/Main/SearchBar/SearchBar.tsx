@@ -1,18 +1,13 @@
 import React from 'react';
-import Input from '../../shared/Input';
-import Button from '../../shared/Button';
-
-interface ISearchBar {
-    isLoader: boolean;
-    onSearch: () => void;
-    handleSubmit: () => void;
-    setQuery: (value: string) => void;
-}
+import Input from '../../shared/Input/Input';
+import Button from '../../shared/Button/Button';
+import {ISearchBar} from '../../../interfaces/search-bar.interface';
+import './SearchBar.css';
 
 function SearchBar(props: ISearchBar) {
     return(
         <form className={`input ${props.isLoader && 'input__hide'}`} onSubmit={props.handleSubmit}>
-            <Input onChange={(e) => {
+            <Input value={props.query} onChange={(e) => {
                 props.setQuery(e.target.value);
             }
             } />
