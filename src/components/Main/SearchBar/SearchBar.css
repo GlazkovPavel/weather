@@ -12,6 +12,13 @@
 .input__search {
     flex: 1;
     margin-right: 6px;
+    border-radius: 6px;
+}
+
+.input__date {
+    width: 130px;
+    margin-right: 6px;
+    border-radius: 6px;
 }
 
 

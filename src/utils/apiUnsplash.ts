@@ -1,4 +1,4 @@
-class Api {
+class ApiUnsplash {
     private _baseUrl: string;
     private _apiKey: string;
     constructor(data: { baseUrl: string; apiKey: string; }) {
@@ -39,7 +39,7 @@ class Api {
 
 }
 
-const api = new Api({
+const api = new ApiUnsplash({
     baseUrl: "https://api.unsplash.com/",
     apiKey: "P2hzfuCuOqvhuqX4A9npRfIU6HLhQKOPLO87eBJKhmI",
 });

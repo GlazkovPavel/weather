@@ -8,6 +8,7 @@
   -moz-text-size-adjust: 100%;
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 @media (max-width: 940px){
   .App {

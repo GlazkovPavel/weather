@@ -41,7 +41,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3",
-    "react-router-dom": "^6.6.2"
+    "@types/react-router-dom": "5.3.3",
+    "moment": "2.29.4",
+    "react-router-dom": "6.6.2"
   }
 }

@@ -4,4 +4,5 @@ export interface ISearchBar {
     onSearch: () => void;
     handleSubmit: (e: any) => void;
     setQuery: (value: string) => void;
+    setDate: (val: string) => void;
 }

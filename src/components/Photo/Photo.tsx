@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
-import api from '../../utils/api';
+import api from '../../utils/apiUnsplash';
 import {IPhoto} from '../../interfaces/photo.interface';
 import './Photo.css';
 

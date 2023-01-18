@@ -4,28 +4,19 @@ import Header from '../Header/Header';
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
 import Main from '../Main/Main';
-import api from '../../utils/api';
+import api from '../../utils/apiUnsplash';
 import {PageNotFound} from '../PageNotFound/PageNotFound';
 import Photo from '../Photo/Photo';
 import {Loader} from '../Loader/Loader';
+import apiWeather from '../../utils/apiWeather';
 
 function App() {
 
     const [loader, setLoader] = React.useState(false);
     const [data, setData] = React.useState();
-    const [query, serQuery] = React.useState('');
-
-    React.useEffect(() =>{
-        showLoader(false);
-        // api.getRandom()
-        //     .then((data) => {
-        //         setData(data)
-        //     })
-        //     .catch(err => console.error(err))
-        //     .finally(() => {
-        //         showLoader(false);
-        //     })
-    }, [])
+    const [query, setQuery] = React.useState('');
+    const [date, setDate] = React.useState('');
+    const [dataWeather, setDataWeather] = React.useState();
 
     function showLoader(item: boolean){
         setLoader(item)
@@ -47,6 +38,12 @@ function App() {
             .finally(() => {
                 showLoader(false);
             })
+        apiWeather.getWeather(query, date)
+            .then((data: any) => {
+                console.log(data);
+                setDataWeather(data);
+            })
+        console.log(date)
     };
 
   return (
@@ -55,13 +52,15 @@ function App() {
         <Routes>
             <Route path="/" element={
                 <Main card={data}
+                      weather={dataWeather}
                       searchBar={
                           {
                               handleSubmit: handleSubmit,
                               isLoader: loader,
                               query: query,
-                              setQuery: serQuery,
-                              onSearch: onSearch
+                              setQuery: setQuery,
+                              onSearch: onSearch,
+                              setDate: setDate,
                           }
                       }/>
             }/>
