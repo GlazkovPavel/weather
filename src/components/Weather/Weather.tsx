@@ -1,11 +1,17 @@
 import React from 'react';
+import {ApiLocationResponseInterface} from '../../interfaces/api-location-response.interface';
+import {IWeatherResponse} from '../App/App';
 
-function Weather(props: any) {
+export interface IWeatherProps {
+    weather: IWeatherResponse;
+    city: ApiLocationResponseInterface;
+}
+function Weather(props: IWeatherProps) {
     return (
         <div>
-            <span>Country: {props.value?.location?.country}</span>
-            <span>City: {props.value?.location?.name}</span>
-            <span>Temp: {props.value?.current?.temp_c}</span>
+            <span>Country: {props.city.state}</span>
+            <span>City: {props.city?.name}</span>
+            <span>Temp: {props.weather?.main?.temp}</span>
 
         </div>
     )

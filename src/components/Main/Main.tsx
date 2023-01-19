@@ -18,7 +18,10 @@ function Main(props: IMainProps) {
                 isLoader={props.searchBar.isLoader}
                 setDate={props.searchBar.setDate}
             />
-            <Weather  value={props.weather}/>
+            <Weather
+                city={props.city}
+                weather={props.weather}
+            />
             <ul className="card">
                 {props.card?.map((card: ICardProps) => (
                     <Card

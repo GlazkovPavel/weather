@@ -9,14 +9,27 @@ import {PageNotFound} from '../PageNotFound/PageNotFound';
 import Photo from '../Photo/Photo';
 import {Loader} from '../Loader/Loader';
 import apiWeather from '../../utils/apiWeather';
+import {ApiLocationResponseInterface} from '../../interfaces/api-location-response.interface';
 
+export interface IWeatherResponse {
+    main: {
+        feels_like: number;
+        humidity: number;
+        pressure: number;
+        temp: number;
+        temp_max: number;
+        temp_min: number;
+
+    }
+}
 function App() {
 
     const [loader, setLoader] = React.useState(false);
     const [data, setData] = React.useState();
     const [query, setQuery] = React.useState('');
     const [date, setDate] = React.useState('');
-    const [dataWeather, setDataWeather] = React.useState();
+    const [dataWeather, setDataWeather] = React.useState({} as IWeatherResponse);
+    const [city, setCity] = React.useState({} as ApiLocationResponseInterface);
 
     function showLoader(item: boolean){
         setLoader(item)
@@ -29,6 +42,17 @@ function App() {
 
     const onSearch = () => {
         showLoader(true)
+        apiWeather.getLocation(query)
+            .then((res: ApiLocationResponseInterface[]) => {
+                setCity(res[0]);
+            })
+            .then(() => {
+                apiWeather.getWeatherByLocation(city.lat, city.lon)
+                    .then((response: IWeatherResponse) => {
+                        console.log(response);
+                        setDataWeather(response);
+                    })
+            })
         api
             .search(query)
             .then((data: any) => {
@@ -38,12 +62,6 @@ function App() {
             .finally(() => {
                 showLoader(false);
             })
-        apiWeather.getWeather(query, date)
-            .then((data: any) => {
-                console.log(data);
-                setDataWeather(data);
-            })
-        console.log(date)
     };
 
   return (
@@ -53,6 +71,7 @@ function App() {
             <Route path="/" element={
                 <Main card={data}
                       weather={dataWeather}
+                      city={city}
                       searchBar={
                           {
                               handleSubmit: handleSubmit,
