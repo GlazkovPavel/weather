@@ -22,7 +22,7 @@ class ApiUnsplash {
     }
 
     getRandom(count=12) {
-        return fetch(`${this._baseUrl}/photos/random?&count=${count}`, {
+        return fetch(`${this._baseUrl}/search/photos?query=capital-cities&count=${count}`, {
             headers: {
                 Authorization: `Client-ID ${this._apiKey}`,
             },

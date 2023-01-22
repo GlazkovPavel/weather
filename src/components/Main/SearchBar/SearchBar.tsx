@@ -14,8 +14,8 @@ function SearchBar(props: ISearchBar) {
     React.useEffect(() => {
         setDate(moment().format('YYYY-MM-DD'))
     }, [])
-    const minDate = moment().subtract('days', 7).format('YYYY-MM-DD');
-    const maxDate = moment().add('days', 7).format('YYYY-MM-DD');
+    const minDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
+    const maxDate = moment().add(7, 'days').format('YYYY-MM-DD');
 
     function changeDate(val: string): void {
         setDate(val);

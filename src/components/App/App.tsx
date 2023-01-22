@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import './App.css';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import Main from '../Main/Main';
 import api from '../../utils/apiUnsplash';
 import {PageNotFound} from '../PageNotFound/PageNotFound';
@@ -10,6 +10,9 @@ import Photo from '../Photo/Photo';
 import {Loader} from '../Loader/Loader';
 import apiWeather from '../../utils/apiWeather';
 import {ApiLocationResponseInterface} from '../../interfaces/api-location-response.interface';
+import {Simulate} from 'react-dom/test-utils';
+import error = Simulate.error;
+import {StartPage} from '../StartPage/StartPage';
 
 export interface IWeatherResponse {
     main: {
@@ -23,6 +26,7 @@ export interface IWeatherResponse {
     }
 }
 function App() {
+    const navigate = useNavigate();
 
     const [loader, setLoader] = React.useState(false);
     const [data, setData] = React.useState();
@@ -45,13 +49,19 @@ function App() {
         apiWeather.getLocation(query)
             .then((res: ApiLocationResponseInterface[]) => {
                 setCity(res[0]);
+                return res;
             })
-            .then(() => {
-                apiWeather.getWeatherByLocation(city.lat, city.lon)
-                    .then((response: IWeatherResponse) => {
-                        console.log(response);
-                        setDataWeather(response);
-                    })
+            .then((city: ApiLocationResponseInterface[]) => {
+                if (city.length) {
+                    apiWeather.getWeatherByLocation(city[0].lat, city[0].lon)
+                        .then((response: IWeatherResponse) => {
+                            console.log(response);
+                            setDataWeather(response);
+                        })
+                } else {
+                    navigate(`/${query}`)
+                    throw Error;
+                }
             })
         api
             .search(query)

@@ -22,7 +22,7 @@ class ApiWeather {
     }
 
     getWeatherByLocation(lat: number, lon: number) {
-        return fetch(`${this._baseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${this._apiKey}`)
+        return fetch(`${this._baseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${this._apiKey}&cnt=3`)
             .then(this._getResponse)
     }
 

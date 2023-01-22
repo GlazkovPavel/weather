@@ -1,0 +1,39 @@
+.weather{
+    max-width: 880px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.cards {
+    height: 300px;
+    width: 200px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px 3px #42423d;
+    margin: 10px;
+    background-image: linear-gradient(0.40turn, #2E9AFF, #FFD829);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+span{
+
+}
+span:last-child {
+    margin-top: 30px;
+}
+
+.weather__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.weather__description {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}

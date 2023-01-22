@@ -5,6 +5,7 @@ import {ICardProps} from '../../interfaces/card-props.inteface';
 import {IMainProps} from '../../interfaces/main-props.interface';
 import './Main.css';
 import Weather from '../Weather/Weather';
+import {StartPage} from '../StartPage/StartPage';
 
 
 function Main(props: IMainProps) {
@@ -18,10 +19,11 @@ function Main(props: IMainProps) {
                 isLoader={props.searchBar.isLoader}
                 setDate={props.searchBar.setDate}
             />
+            {!props.weather?.main ? <StartPage /> :
             <Weather
                 city={props.city}
                 weather={props.weather}
-            />
+            />}
             <ul className="card">
                 {props.card?.map((card: ICardProps) => (
                     <Card
